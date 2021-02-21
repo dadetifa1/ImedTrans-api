@@ -1,4 +1,15 @@
-INSERT INTO public.protech_posting
-(sales_number, invoice, dollar_amount, commission_percentage_fraction, commission_amount, po_number, customer, territory, vendor, paid)
-VALUES('0912085', '342713', '200', 0, 0, '186358', 'BLK HLS PWR', 'Iowa', 'SEL', false);
+INSERT INTO public.med_users
+(useremail, userpassword)
+VALUES('tester', 'tester');
 
+INSERT INTO public.transport_entry
+(starting_location, destination_location, date_of_transport, mileage, create_date, "requested_userId")
+VALUES('{
+	"address": "21 jump st",
+	"lat": 40.712776,
+	"lon": -74.005974
+}', '{
+	"address": "21 jump st",
+	"lat": 40.712776,
+	"lon": -74.005974
+}', now(), 12, now(), 1);

@@ -33,7 +33,13 @@ app.use(function validateBearerToken(req, res, next) {
   next();
 });
 
-app.use("/api/postings", iMedtransRouter);
+app.get("/", (err, res) => {
+  res.status(200);
+  res.json({ working: true });
+  res.end();
+});
+
+app.use("/api/imedtransport", iMedtransRouter);
 
 app.use(errorHandler);
 

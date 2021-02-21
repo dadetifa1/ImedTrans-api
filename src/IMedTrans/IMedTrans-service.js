@@ -1,10 +1,13 @@
 const ImedTransService = {
   getImedUser(db, imedtrans_userid) {
-    return db
-      .from("med_users")
-      .select("med_users.userid", "med_users.useremail")
-      .where("med_users.useremail", imedtrans_userid)
-      .first();
+    return (
+      db
+        .from("med_users")
+        .select("med_users.userid", "med_users.useremail")
+        .where("med_users.userid", imedtrans_userid)
+        // .where("med_users.useremail", imedtrans_userid)
+        .first()
+    );
   },
   insertImedTransportUser(db, newUser) {
     return db
@@ -24,7 +27,7 @@ const ImedTransService = {
         "transport_entry.destination_location",
         "transport_entry.date_of_transport",
         "transport_entry.mileage",
-        "transport_entry.requested_user"
+        "transport_entry.requested_userId"
       );
   },
   getTransportByUserId(db, requested_user_Id) {
@@ -36,7 +39,7 @@ const ImedTransService = {
         "transport_entry.destination_location",
         "transport_entry.date_of_transport",
         "transport_entry.mileage",
-        "transport_entry.requested_user"
+        "transport_entry.requested_userId"
       )
       .where("transport_entry.requested_userId", requested_user_Id)
       .first();
