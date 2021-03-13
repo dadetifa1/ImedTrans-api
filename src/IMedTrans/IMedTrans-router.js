@@ -12,32 +12,6 @@ const serializeUserData = (post) => ({
   useremail: xss(post.useremail),
 });
 
-// ImedTransportRouter.route("/user/transportlog/:imed_userid")
-//   .all((req, res, next) => {
-//     if (isNaN(parseInt(req.params.imed_userid))) {
-//       return res.status(404).json({
-//         error: { message: `Invalid user id` },
-//       });
-//     }
-//     ImedTransService.getTransportByUserId(
-//       req.app.get("db"),
-//       req.params.imed_userid
-//     )
-//       .then((userdata) => {
-//         if (!userdata) {
-//           return res.status(404).json({
-//             error: { message: `There are not transport(s) setup for the user` },
-//           });
-//         }
-//         res.userdata = userdata;
-//         next();
-//       })
-//       .catch(next);
-//   })
-//   .get((req, res, next) => {
-//     res.json(res.userdata);
-//   });
-
 ImedTransportRouter.route("/user/transportlog/")
   .all(requireAuth, (req, res, next) => {
     if (req.user.user_name !== "admin") {
@@ -156,62 +130,6 @@ ImedTransportRouter.route("/user/transportreq")
       })
       .catch(next);
   });
-
-// ImedTransportRouter.route("/user/:requested_userId")
-//   .all((req, res, next) => {
-//     if (isNaN(parseInt(req.params.requested_userId))) {
-//       return res.status(404).json({
-//         error: { message: `Invalid user id` },
-//       });
-//     }
-//     ImedTransService.getImedUser(req.app.get("db"), req.params.requested_userId)
-//       .then((userdata) => {
-//         if (!userdata) {
-//           return res.status(404).json({
-//             error: { message: `The requested user doesn't exist` },
-//           });
-//         }
-//         res.userdata = userdata;
-//         next();
-//       })
-//       .catch(next);
-//   })
-//   .get((req, res, next) => {
-//     res.json(serializeUserData(res.userdata));
-//   })
-//   .post(jsonParser, (req, res, next) => {
-//     const {
-//       starting_location,
-//       destination_location,
-//       date_of_transport,
-//       mileage,
-//     } = req.body;
-//     const newUserRegistration = {
-//       starting_location,
-//       destination_location,
-//       date_of_transport,
-//       mileage,
-//     };
-
-//     for (const [key, value] of Object.entries(newUserRegistration)) {
-//       if (value == null) {
-//         return res.status(400).json({
-//           error: { message: `Missing '${key}' in request body` },
-//         });
-//       }
-//     }
-
-//     newUserRegistration["requested_user"] = req.params.requested_userId;
-
-//     ImedTransService.insertTransport(req.app.get("db"), newUserRegistration)
-//       .then((AddedImedTranportUser) => {
-//         res
-//           .status(201)
-//           .location(`/user/${AddedImedTranportUser.transportid}`)
-//           .json(AddedImedTranportUser);
-//       })
-//       .catch(next);
-//   });
 
 ImedTransportRouter.route("/adminlogs").get((req, res, next) => {
   ImedTransService.getAllLoggedTransports(req.app.get("db"))

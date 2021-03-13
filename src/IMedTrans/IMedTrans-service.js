@@ -6,14 +6,11 @@ const ImedTransService = {
       .then((user) => !!user);
   },
   getImedUser(db, imedtrans_userid) {
-    return (
-      db
-        .from("med_users")
-        .select("med_users.userid", "med_users.useremail")
-        .where("med_users.userid", imedtrans_userid)
-        // .where("med_users.useremail", imedtrans_userid)
-        .first()
-    );
+    return db
+      .from("med_users")
+      .select("med_users.userid", "med_users.useremail")
+      .where("med_users.userid", imedtrans_userid)
+      .first();
   },
   insertImedTransportUser(db, newUser) {
     return db
