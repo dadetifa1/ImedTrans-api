@@ -1,4 +1,10 @@
 const ImedTransService = {
+  hasUserWithUserName(db, user_name) {
+    return db("med_users")
+      .where({ user_name })
+      .first()
+      .then((user) => !!user);
+  },
   getImedUser(db, imedtrans_userid) {
     return (
       db
@@ -21,28 +27,37 @@ const ImedTransService = {
   getAllLoggedTransports(db) {
     return db
       .from("transport_entry")
+      .innerJoin(
+        "med_users",
+        "transport_entry.requested_user",
+        "med_users.userid"
+      )
       .select(
         "transport_entry.transportid",
         "transport_entry.starting_location",
         "transport_entry.destination_location",
         "transport_entry.date_of_transport",
         "transport_entry.mileage",
-        "transport_entry.requested_userId"
+        "med_users.user_name"
       );
   },
   getTransportByUserId(db, requested_user_Id) {
     return db
       .from("transport_entry")
+      .innerJoin(
+        "med_users",
+        "transport_entry.requested_user",
+        "med_users.userid"
+      )
       .select(
         "transport_entry.transportid",
         "transport_entry.starting_location",
         "transport_entry.destination_location",
         "transport_entry.date_of_transport",
         "transport_entry.mileage",
-        "transport_entry.requested_userId"
+        "med_users.user_name"
       )
-      .where("transport_entry.requested_userId", requested_user_Id)
-      .first();
+      .where("transport_entry.requested_user", requested_user_Id);
   },
   insertTransport(db, newTransport) {
     return db
