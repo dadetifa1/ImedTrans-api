@@ -104,14 +104,14 @@ ImedTransportRouter.route("/user/transportreq")
       date_of_transport,
       mileage,
     } = req.body;
-    const newUserRegistration = {
+    const userTransportationReq = {
       starting_location,
       destination_location,
       date_of_transport,
       mileage,
     };
 
-    for (const [key, value] of Object.entries(newUserRegistration)) {
+    for (const [key, value] of Object.entries(userTransportationReq)) {
       if (value == null) {
         return res.status(400).json({
           error: { message: `Missing '${key}' in request body` },
@@ -119,9 +119,9 @@ ImedTransportRouter.route("/user/transportreq")
       }
     }
 
-    newUserRegistration["requested_user"] = req.user.userid;
+    userTransportationReq["requested_user"] = req.user.userid;
 
-    ImedTransService.insertTransport(req.app.get("db"), newUserRegistration)
+    ImedTransService.insertTransport(req.app.get("db"), userTransportationReq)
       .then((AddedImedTranportUser) => {
         res
           .status(201)
@@ -130,14 +130,5 @@ ImedTransportRouter.route("/user/transportreq")
       })
       .catch(next);
   });
-
-ImedTransportRouter.route("/adminlogs").get((req, res, next) => {
-  ImedTransService.getAllLoggedTransports(req.app.get("db"))
-    .then((data) => {
-      res.json(data);
-      next();
-    })
-    .catch(next);
-});
 
 module.exports = ImedTransportRouter;
