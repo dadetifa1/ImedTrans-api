@@ -16,11 +16,11 @@ API server that manages transportation data for the front end app (IMedTrans-app
 
 ## Screen Shots
 
-Capture a sale:
+Landing Page:
 
 ![Landing Page](screen_shots/Landing_page.jpg)
 
-Sales collection(s):
+Requesting transportation:
 
 ![sample results](screen_shots/Transport_request.jpg)
 
