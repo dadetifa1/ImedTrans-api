@@ -21,6 +21,10 @@ app.use(
 app.use(cors());
 app.use(helmet());
 
+app.get("/", function (req, res) {
+  res.send("IMedTrans is up and running");
+});
+
 app.use("/api/imedtransport/auth", authRouter);
 app.use("/api/imedtransport", iMedtransRouter);
 
