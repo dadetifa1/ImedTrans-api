@@ -1,0 +1,1 @@
+ALTER TABLE public.transport_entry DROP CONSTRAINT transport_entry_fk;

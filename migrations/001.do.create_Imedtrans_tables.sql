@@ -16,7 +16,3 @@ CREATE TABLE public.transport_entry (
 	create_date timestamptz(0) NOT NULL DEFAULT now(),
 	requested_user int4 NOT NULL
 );
-
--- public.transport_entry foreign keys
-
-ALTER TABLE public.transport_entry ADD CONSTRAINT transport_entry_fk FOREIGN KEY (requested_user) REFERENCES med_users(userid);

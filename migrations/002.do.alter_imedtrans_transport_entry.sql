@@ -1,0 +1,1 @@
+ALTER TABLE public.transport_entry ADD CONSTRAINT transport_entry_fk FOREIGN KEY (requested_user) REFERENCES med_users(userid);
