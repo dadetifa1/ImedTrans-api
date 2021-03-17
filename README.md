@@ -8,7 +8,7 @@ API server that manages transportation data for the front end app (IMedTrans-app
 
 ## Live front end app
 
-[Protech](https://protech-app.vercel.app/collection).
+[IMedTrans](https://protech-app.vercel.app/collection).
 
 ## Front Repo
 
