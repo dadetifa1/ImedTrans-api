@@ -134,4 +134,12 @@ ImedTransportRouter.route("/user/transportreq")
       .catch(next);
   });
 
+ImedTransportRouter.route("/testdb").get((req, res, next) => {
+  ImedTransService.getAllLoggedTransports(req.app.get("db"))
+    .then((AddedImedTranportUser) => {
+      res.status(201).json(AddedImedTranportUser);
+    })
+    .catch(next);
+});
+
 module.exports = ImedTransportRouter;
