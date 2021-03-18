@@ -57,6 +57,8 @@ ImedTransportRouter.route("/user").post(jsonParser, (req, res, next) => {
     userpassword,
   };
 
+  console.log("test 1");
+
   for (const [key, value] of Object.entries(newUserRegistration)) {
     if (value == null) {
       return res.status(400).json({
@@ -67,6 +69,7 @@ ImedTransportRouter.route("/user").post(jsonParser, (req, res, next) => {
 
   ImedTransService.hasUserWithUserName(req.app.get("db"), user_name)
     .then((hasUserWithUserName) => {
+      console.log("Back from the DB");
       if (hasUserWithUserName)
         return res.status(400).json({ error: `Username already taken` });
 

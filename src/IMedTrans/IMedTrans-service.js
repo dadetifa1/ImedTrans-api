@@ -1,5 +1,6 @@
 const ImedTransService = {
   hasUserWithUserName(db, user_name) {
+    console.log("Trying the DB");
     return db("med_users")
       .where({ user_name })
       .first()
