@@ -12,7 +12,7 @@ API server that manages transportation data for the front end app (IMedTrans-app
 
 ## Front Repo
 
-[Git](https://github.com/dadetifa1/Protech-api).
+[Git](https://github.com/dadetifa1/ImedTrans-app).
 
 ## Screen Shots
 
